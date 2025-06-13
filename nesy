@@ -1,0 +1,22 @@
+from flask import Flask
+import random
+
+
+facts_list = ['оказывается,что птица не вертолет' , 'а вы знали ,что если много есть,то будет болтшой шанс стать толстым']
+app = Flask(__name__)
+secret_list = ['орел','решка']
+
+
+@app.route("/random_fact")
+def hello_world():
+    return f'<p>{random.choice(facts_list)}</p> <a href = "/" >главная страница</a>'
+
+@app.route("/")
+def home():
+    return f"<h1>Главная страница</h1> <a href = '/random_fact'>рандомные факты</a> <a href = '/secret'>орул или решка</a>"
+
+@app.route("/secret")
+def secret():
+    return f'<p>{random.choice(secret_list)}</p> <a href = "/" >главная страница</a>'
+
+app.run(debug=True)
